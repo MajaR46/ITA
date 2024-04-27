@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo:5.0.25-focal
+    container_name: "mongodbPayments"
+    ports:
+      - 27070:27017
+    volumes:
+      - ~/mongo/data:/data/db
+    networks:
+      - ticket
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: "rabbitmq"
+    ports:
+      - 15672:15672
+      - 5673:5672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - ticket
+
+  payments:
+    image: quarkus/eventpayments-jvm
+    container_name: "eventpayments"
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongodb
+      - rabbitmq
+    networks:
+      - ticket
+volumes:
+  mongodb_data:
+
+networks:
+  ticket:
+    driver: bridge

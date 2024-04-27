@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    font-family: "Quicksand";
+    color: #333;
+}
+
+.horizontal-nav {
+    padding: 20px;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    border-bottom: 1px solid #f2f2f2;
+    text-align: center;
+}
+
+.horizontal-nav h1 {
+    color: #FF7F50;
+}
+
+.horizontal-nav .links {
+    margin-left: auto;
+    text-align: center
+}
+
+.horizontal-nav a {
+    margin-left: 16px;
+    text-decoration: none;
+    padding: 6px;
+    text-align: center;
+}
+
+.horizontal-nav a:hover {
+    color: #FF7F50;
+}
+
+.content {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.user-preview {
+    padding: 10px 16px;
+    margin: 20px 0;
+    border-bottom: 1px solid #fafafa;
+}
+
+.user-preview:hover {
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-preview h2 {
+    font-size: 20px;
+    color: #FF7F50;
+    margin-bottom: 8px;
+}
+
+.user-preview a {
+    text-decoration: none;
+}
+
+.user-details h2 {
+    font-size: 20px;
+    color: #FF7F50;
+    margin-bottom: 10px;
+}
+
+.user-details div {
+    margin: 20px 0;
+}
+
+.user-details button {
+    background: #FF7F50;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.create {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.create label {
+    text-align: left;
+    display: block;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.home {
+    text-align: center;
+    margin-top: 50px;
+
+}
+
+h2 {
+    font-size: 20px;
+    color: #FF7F50;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: block;
+}
+
+button.logout {
+    background: #FF7F50;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    margin: 25px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+}
+
+button {
+    background: #f1356d;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.login {
+    max-width: 300px;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+}
+
+button.login {
+    text-align: center;
+    margin: auto;
+    background: #FF7F50;
+
+}
+
+.input {
+    text-align: left;
+    justify-content: left
+}
