@@ -5,14 +5,12 @@ services:
     container_name: "mongodb"
     ports:
       - 27070:27017
-    volumes:
-      - ~/mongo/data:/data/db
 
-  users:
+  ticketuser:
     build: .
     restart: always
-    container_name: "eventusers"
+    container_name: "ticketuser"
     ports:
-      - 8080:8080
+      - 8081:8081
     depends_on:
       - mongodb
