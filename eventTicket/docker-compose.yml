@@ -1,16 +1,21 @@
 version: "3.8"
 services:
-  mongodb:
-    image: mongo:5.0.25-focal
-    container_name: "mongodb"
+  eventusersmongo:
+    image: mongo:5.0.26-focal
+    container_name: "eventusersmongo"
     ports:
-      - 27070:27017
-
-  ticketuser:
-    build: .
-    restart: always
-    container_name: "ticketuser"
+      - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+  eventusers:
+    image: majar4601/eventusers:2.0
+    container_name: "eventusers"
     ports:
       - 8081:8081
-    depends_on:
-      - mongodb
+    links:
+      - eventusersmongo
+
+volumes:
+  mongodb_data_container:
+
+
