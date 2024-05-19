@@ -9,7 +9,7 @@ services:
       - mongodb_data:/data/db
 
   eventpayments:
-    image: quarkus/eventpayments-jvm:latest
+    image: majar4601/eventpayments-jvm:latest
     container_name: "eventpayments"
     environment:
       - QUARKUS_MONGODB_CONNECTION_STRING=mongodb://eventpaymentsmongo:27017/
