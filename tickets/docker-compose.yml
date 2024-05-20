@@ -1,19 +1,22 @@
 version: "3.8"
 services:
-  mongodb:
-    image: mongo:5.0.25-focal
-    container_name: "mongodbTickets"
+  eventticketsmongo:
+    image: mongo:5.0.26-focal
+    container_name: "eventticketsmongo"
     ports:
-      - 27070:27017
+      - 47017:27017
     volumes:
-      - ~/mongo/data:/data/db
+      - mongodb_data:/data/db
 
-  tickets:
-    image: quarkus/tickets-jvm
+  eventtickts:
+    image: majar4601/eventtickets-jvm:latest
+    environment:
+      - QUARKUS_MONGODB_CONNECTION_STRING=mongodb://eventticketsmongo:27017/
     container_name: "eventtickets"
     ports:
       - 9000:9000
     depends_on:
-      - mongodb
+      - eventticketsmongo
+
 volumes:
   mongodb_data:

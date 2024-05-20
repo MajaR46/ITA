@@ -16,4 +16,3 @@ public interface LogRepository extends MongoRepository<Log, String> {
 
     Optional<Log> findTopByOrderByTimestampDesc();
 }
-

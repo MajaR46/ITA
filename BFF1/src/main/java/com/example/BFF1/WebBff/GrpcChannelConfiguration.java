@@ -10,7 +10,7 @@ public class GrpcChannelConfiguration {
 
     @Bean
     public ManagedChannel managedChannel() {
-        return ManagedChannelBuilder.forAddress("localhost", 9000)
+        return ManagedChannelBuilder.forAddress("eventtickets", 9000)
                 .usePlaintext()
                 .build();
     }

@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
-
 public class Bff1Application {
 
 	public static void main(String[] args) {

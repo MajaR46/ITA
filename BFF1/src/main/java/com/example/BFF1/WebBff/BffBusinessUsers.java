@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class BffBusinessUsers {
 
-    @Value("http://localhost:8081")
+    @Value("http://eventusers:8081")
     private String usersUrl;
 
     public void UsersService(RestTemplate restTemplate) {

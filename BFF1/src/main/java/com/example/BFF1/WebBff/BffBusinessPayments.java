@@ -16,7 +16,7 @@ import java.util.Collections;
 public class BffBusinessPayments {
 
 
-    @Value("http://localhost:8082")
+    @Value("http://eventpayments:8082")
     private String paymentsUrl;
 
     public void PaymentService(RestTemplate restTemplate) {

@@ -1,0 +1,148 @@
+version: "3.8"
+
+services:
+  eventpaymentsmongo:
+    image: mongo:5.0.26-focal
+    container_name: "eventpaymentsmongo"
+    ports:
+      - 37017:27017
+    volumes:
+      - eventpaymentsmongo_data:/data/db
+    networks:
+      - eventnetwork
+
+
+  eventpayments:
+    image: majar4601/eventpayments-jvm:latest
+    container_name: "eventpayments"
+    environment:
+      - QUARKUS_MONGODB_CONNECTION_STRING=mongodb://eventpaymentsmongo:27017/
+    ports:
+      - 8082:8082
+    depends_on:
+      - eventpaymentsmongo
+    networks:
+      - eventnetwork
+
+
+  mongodb:
+    image: mongo:5.0.26-focal
+    container_name: "mongodb"
+    ports:
+      - 27070:27017
+    volumes:
+      - eventusersmongo_data:/data/db
+    networks:
+      - eventnetwork
+
+
+  eventusers:
+    image: majar4601/eventusers:3.0
+    container_name: "eventusers"
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongodb
+    networks:
+      - eventnetwork
+
+  
+  eventticketsmongo:
+    image: mongo:5.0.26-focal
+    container_name: "eventticketsmongo"
+    ports:
+      - 47017:27017
+    volumes:
+      - eventticketsmongo_data:/data/db
+    networks:
+      - eventnetwork
+
+
+  eventtickets:
+    image: majar4601/eventtickets-jvm:latest
+    environment:
+      - QUARKUS_MONGODB_CONNECTION_STRING=mongodb://eventticketsmongo:27017/
+    container_name: "eventtickets"
+    ports:
+      - 9000:9000
+    depends_on:
+      - eventticketsmongo
+    networks:
+      - eventnetwork
+
+
+  
+  eventlogmongo:
+    image: mongo:5.0.26-focal
+    container_name: "eventlogmongo"
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_bff:/data/db
+    networks:
+      - eventnetwork
+
+
+  eventbffweb:
+    image: majar4601/eventbffweb:2.0
+    container_name: "eventbffweb"
+    ports:
+      - 8100:8100
+    depends_on:
+      - eventlogmongo
+      - eventpayments
+      - eventtickets
+      - eventusers
+    networks:
+      - eventnetwork
+
+  shellapp:
+    image: majar4601/shellapp:2.0
+    ports:
+      - "3000:3000"
+    depends_on:
+      - usersfrontend
+      - ticketsfrontend
+      - paymentfrontend
+    networks:
+      - eventnetwork
+
+  usersfrontend:
+    image: majar4601/usersfrontend:3.0
+    ports:
+      - "3001:3001"
+    depends_on:
+      - eventbffweb
+    networks:
+      - eventnetwork
+
+  ticketsfrontend:
+    image: majar4601/ticketsfrontend:2.0
+    ports:
+      - "3002:3002"
+    depends_on:
+      - eventbffweb
+    networks:
+      - eventnetwork
+    
+  
+  paymentfrontend:
+    image: majar4601/paymentfrontend:4.0
+    ports:
+      - "3003:3003"
+    depends_on:
+      - eventbffweb
+    networks:
+      - eventnetwork
+
+
+volumes:
+  eventpaymentsmongo_data:
+  eventusersmongo_data:
+  eventticketsmongo_data:
+  mongodb_data_bff:
+
+
+networks:
+  eventnetwork:
+    external: true

@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+
+  shellapp:
+    image: majar4601/shellapp:2.0
+    ports:
+      - "3000:3000"
+
+  usersfrontend:
+    image: majar4601/usersfrontend:3.0
+    ports:
+      - "3001:3001"
+
+  ticketsfrontend:
+    image: majar4601/ticketsfrontend:2.0
+    ports:
+      - "3002:3002"
+  
+  paymentfrontend:
+    image: majar4601/paymentfrontend:4.0
+    ports:
+      - "3003:3003"
