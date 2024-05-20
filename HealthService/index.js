@@ -5,8 +5,8 @@ const app = express();
 const PORT = 1000;
 
 const healthCheckUrls = [
-    { url: 'http://127.0.0.1:8082/q/health', name: 'Payment Service' },
-    { url: 'http://localhost:8081/actuator/health', name: 'Users Service' }
+    { url: 'http://eventpayments:8082/q/health', name: 'Payment Service' },
+    { url: 'http://eventusers:8081/actuator/health', name: 'Users Service' }
 ];
 
 async function performHealthCheck() {

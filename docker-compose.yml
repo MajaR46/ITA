@@ -135,6 +135,25 @@ services:
     networks:
       - eventnetwork
 
+  eventstats:
+    image: majar4601/eventstats:9.0
+    ports:
+      -  8200:8200
+    depends_on:
+      - eventlogmongo
+    networks:
+      - eventnetwork
+  
+  eventhealth:
+    image: majar4601/eventhealth:1.0
+    ports:
+      -  1000:1000
+    depends_on:
+      - eventusers
+      - eventpayments
+    networks:
+      - eventnetwork
+
 
 volumes:
   eventpaymentsmongo_data:

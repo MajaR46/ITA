@@ -1,16 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const dotenv = require("dotenv");
-dotenv.config();
 
 
 const app = express();
-const PORT = process.env.PORT || 8200;
+const PORT = 8200;
 
 
 
-mongoose.connect(process.env.DATABASE_URL, {
-  dbName: "eventTicket",
+mongoose.connect('mongodb://eventlogmongo:27017', {
+  dbName: "logs",
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -22,7 +20,7 @@ const logSchema = new mongoose.Schema({
   _class:String,
 },
 {
-  collection: "log",
+  collection: "logs",
 });
 
 const Log = mongoose.model('Log', logSchema);
